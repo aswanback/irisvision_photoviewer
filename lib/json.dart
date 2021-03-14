@@ -12,7 +12,6 @@ Gets the full list of users from json, converts to better objects to work with
 Future<List> getUsers() async {
   final response = await http.get(Uri.https('jsonplaceholder.typicode.com', 'users'));
   if (response.statusCode == 200) {
-    print('we made it');
     List UserList = (json.decode(response.body) as List).map((data) => User.fromJson(data)).toList();
     return UserList;
   } else {

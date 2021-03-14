@@ -16,7 +16,7 @@ class _AppState extends State<App> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          '/': (context) => LoadingScreen(), //loading - splash
+          '/': (context) => LoadingScreen(),
         });
   }
 }

@@ -41,7 +41,7 @@ class _InfoScreenState extends State<InfoScreen> {
             child: Center(
                 child: Column(
                   children: [
-                    SizedBox(height: 40,),
+                    SizedBox(height: 20,),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(children: [
@@ -76,7 +76,9 @@ class _InfoScreenState extends State<InfoScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Row(children: [
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                         Text("Address",style: TextStyle(color: Colors.white54,fontSize: 20),),
                         Expanded(child: SizedBox(width: 10,)),
                         Expanded(child: Text("${widget.address}",style: TextStyle(color: Colors.white54,fontSize: 20,)))

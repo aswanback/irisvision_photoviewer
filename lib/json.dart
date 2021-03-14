@@ -3,37 +3,16 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-Future<List> getAlbums() async {
-  final response =
-  await http.get(Uri.https('jsonplaceholder.typicode.com', 'albums'));
-  if (response.statusCode == 200) {
-    List AlbumList = (json.decode(response.body) as List)
-        .map((data) => Album.fromJson(data))
-        .toList();
-    return AlbumList;
-  } else {
-    throw Exception("Couldn't load albums");
-  }
-}
+// json.dart hols all the json fetching methods and formatting classes, they are all very similar
 
-class Album {
-  final int userId;
-  final int id;
-  final String title;
-  Album({this.userId, this.id, this.title});
-
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      userId: json['userId'],
-      id: json['id'],
-      title: json['title'],
-    );
-  }
-}
-
+/*
+Future<List> getUsers() and class User{}
+Gets the full list of users from json, converts to better objects to work with
+*/
 Future<List> getUsers() async {
   final response = await http.get(Uri.https('jsonplaceholder.typicode.com', 'users'));
   if (response.statusCode == 200) {
+    print('we made it');
     List UserList = (json.decode(response.body) as List).map((data) => User.fromJson(data)).toList();
     return UserList;
   } else {
@@ -63,7 +42,42 @@ class User {
   }
 }
 
+/*
+Future<List> getAlbums() and class Album{}
+Gets the full list of albums from json, converts to better objects to work with
+*/
+Future<List> getAlbums() async {
+  final response =
+  await http.get(Uri.https('jsonplaceholder.typicode.com', 'albums'));
+  if (response.statusCode == 200) {
+    List AlbumList = (json.decode(response.body) as List)
+        .map((data) => Album.fromJson(data))
+        .toList();
+    return AlbumList;
+  } else {
+    throw Exception("Couldn't load albums");
+  }
+}
 
+class Album {
+  final int userId;
+  final int id;
+  final String title;
+  Album({this.userId, this.id, this.title});
+
+  factory Album.fromJson(Map<String, dynamic> json) {
+    return Album(
+      userId: json['userId'],
+      id: json['id'],
+      title: json['title'],
+    );
+  }
+}
+
+/*
+Future<List> getPhotos() and class Photo{}
+Gets the full list of photos from json, converts to better objects to work with the metadata
+*/
 Future<List> getPhotos() async {
   final response = await http.get(Uri.https('jsonplaceholder.typicode.com', 'photos'));
   if (response.statusCode == 200) {

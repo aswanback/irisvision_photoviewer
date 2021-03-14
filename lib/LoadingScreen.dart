@@ -1,21 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'json.dart';
+import 'UserScreen.dart';
 
-class splash extends StatefulWidget {
+class LoadingScreen extends StatefulWidget {
   @override
-  _splashState createState() => _splashState();
+  _LoadingScreenState createState() => _LoadingScreenState();
 }
 
-class _splashState extends State<splash> {
-  void delayTime() async {
-    await Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, '/home');
-    });
-  }
+class _LoadingScreenState extends State<LoadingScreen> {
+  List future_users_list;
+
   @override
-  void initState() {
+  void initState()  {
     super.initState();
-    delayTime();
+    getJsonUsers();
+  }
+
+  void getJsonUsers() async {
+    future_users_list = await getUsers();
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => UserScreen(user_data: future_users_list)));
   }
 
   @override
@@ -37,11 +41,11 @@ class _splashState extends State<splash> {
               children: [
                 Image(image:AssetImage('assets/logo.png'),),
                 SizedBox(height: 40,),
-                CupertinoActivityIndicator(animating: true,),
+                Theme(data: ThemeData(cupertinoOverrideTheme: CupertinoThemeData(brightness: Brightness.dark)),
+                    child: CupertinoActivityIndicator())
               ],
-            ),),
-
-
+            ),
+          ),
         ),
       ],
     );

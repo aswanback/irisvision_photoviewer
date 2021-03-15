@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'dart:async';
 import 'package:irisvision/json.dart';
 import 'package:irisvision/AlbumScreen.dart';
@@ -35,6 +36,15 @@ class _InfoScreenState extends State<InfoScreen> {
           brightness: Brightness.dark,
           backgroundColor: Colors.grey[900],
           elevation: 10,
+          leading: Container(),
+          actions: [
+            Transform.rotate(
+              angle: pi,
+              child: BackButton(
+                  color: Colors.grey[100]
+              ),
+            ),
+          ],
         ),
         body: Container(
           color: Colors.black87,

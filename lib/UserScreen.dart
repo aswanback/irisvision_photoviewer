@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:irisvision/AlbumScreen.dart';
+import 'package:page_transition/page_transition.dart';
 import 'InfoScreen.dart';
 
 
@@ -60,41 +61,46 @@ class UserScreen extends StatelessWidget {
                                   child: SizedBox(
                                     width: 20,
                                   )),
+
+
                               TextButton(
-                                  onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          AlbumScreen(
-                                            userId:
-                                            user_data[index].id,
-                                            name:
-                                            user_data[index].name,
-                                          ),
-                                    ),
-                                  ),
-                                  child: Text('Albums',style: TextStyle(color: Colors.orange[600]),)),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          type: PageTransitionType.leftToRightWithFade,
+                                          child: InfoScreen(
+                                            id: user_data[index].id,
+                                            name: user_data[index].name,
+                                            username:
+                                            user_data[index].username,
+                                            email: user_data[index].email,
+                                            phone: user_data[index].phone,
+                                            address:
+                                            user_data[index].address,
+                                          ),));
+                                },
+                                child: Text("Info",style: TextStyle(color: Colors.orange[600]),),
+                              ),
                               SizedBox(
                                 width: 10,
                               ),
                               TextButton(
-                                onPressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => InfoScreen(
-                                      id: user_data[index].id,
-                                      name: user_data[index].name,
-                                      username:
-                                      user_data[index].username,
-                                      email: user_data[index].email,
-                                      phone: user_data[index].phone,
-                                      address:
-                                      user_data[index].address,
-                                    ),
-                                  ),
-                                ),
-                                child: Text("Info",style: TextStyle(color: Colors.orange[600]),),
-                              )
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeftWithFade,
+                                          child: AlbumScreen(
+                                            userId:
+                                            user_data[index].id,
+                                            name:
+                                            user_data[index].name,
+                                          ),));
+                                  },
+
+
+                                  child: Text('Albums',style: TextStyle(color: Colors.orange[600]),)),
                             ],
                           ),
                         ),
